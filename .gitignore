@@ -1,0 +1,49 @@
+# Node modules
+/node_modules/
+
+# TypeScript build output
+/dist/
+/build/
+
+/# Jest coverage directory
+/coverage/
+
+# TypeScript compiler cache
+/.tsbuildinfo
+
+# Jest test artifacts (if any)
+/jest-test-results.json
+/jest-coverage/
+
+# Environment files
+/.env
+/.env.local
+/.env.*.local
+
+# Logs
+/logs
+*.log
+
+# IDE or editor specific files
+/.vscode/
+/.idea/
+/*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Debug and temporary files
+*.bak
+*.tmp
+
+# npm package lock file (if you use Yarn, uncomment the next line)
+/package-lock.json
+
+# TypeScript configuration files if any don't need to be versioned
+/tsconfig.json
+/tsconfig.tsbuildinfo.json
+
+# Jest custom matcher definitions if you don't want to track them
+/src/jest-custom-matcher.d.ts
