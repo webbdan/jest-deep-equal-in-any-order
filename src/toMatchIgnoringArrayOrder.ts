@@ -1,7 +1,9 @@
 import { isEqual } from 'lodash';
+import mapValues from 'lodash.mapvalues'
+import sortAny from 'sort-any';
 
 export const toMatchObjectIgnoringArrayOrder = (received: any, expected: any) => {
-  function deepSort(obj: any): any {
+  /*function deepSort(obj: any): any {
     if (Array.isArray(obj)) {
       return obj.map(deepSort).sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
     } else if (obj && typeof obj === 'object') {
@@ -13,10 +15,23 @@ export const toMatchObjectIgnoringArrayOrder = (received: any, expected: any) =>
         }, {} as any);
     }
     return obj;
-  }
+  }*/
 
-  const normalizedReceived = deepSort(received);
-  const normalizedExpected = deepSort(expected);
+  function deepSort(object: any): any {
+    if (object instanceof Map) {
+      return sortAny([...object]);
+    }
+    if (!Array.isArray(object)) {
+      if (typeof object !== 'object' || object === null || object instanceof Date) {
+        return object;
+      }
+      return mapValues(object, deepSort);
+    }
+    return sortAny(object.map(deepSort));
+  };
+
+  const normalizedReceived = deepSort(received)
+  const normalizedExpected = deepSort(expected)
 
   const pass = isEqual(normalizedReceived, normalizedExpected);
 

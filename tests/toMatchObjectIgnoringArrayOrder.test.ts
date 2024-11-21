@@ -26,7 +26,7 @@ describe('toMatchObjectIgnoringArrayOrder', () => {
 
   it('works as well as the chai matcher', () => {
     expect([1, 2]).toMatchObjectIgnoringArrayOrder([2, 1]);
-    expect([1, 2]).toMatchObjectIgnoringArrayOrder([2, 1, 3]);
+    expect([1, 2, 3]).not.toMatchObjectIgnoringArrayOrder([2, 1]);
     expect({ foo: [1, 2], bar: [4, 89, 22] }).toMatchObjectIgnoringArrayOrder({ foo: [2, 1], bar: [4, 22, 89] });
     expect({ foo: ['foo-1', 'foo-2', [1, 2], null ] }).toMatchObjectIgnoringArrayOrder({ foo: [null, [1, 2], 'foo-1', 'foo-2'] });
     expect({ foo: [1, 2], bar: { baz: ['a', 'b', { lorem: [5, 6] }] } }).toMatchObjectIgnoringArrayOrder({ foo: [2, 1], bar: { baz: ['b', 'a', { lorem: [6, 5] }] } });
